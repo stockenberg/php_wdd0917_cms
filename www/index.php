@@ -6,8 +6,8 @@
      */
     require_once ('app/configs/main.php');
     require_once ("vendor/autoload.php");
-    $app = new \sae\app\App();
 
+    $app = new \sae\app\App();
 
 ?>
 
@@ -23,7 +23,6 @@
     <title>Document</title>
 </head>
 <body>
-<?= include (PAGES . "contact.php"); ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,13 +31,22 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="?p=home">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" href="?p=about">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="?p=contact">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="?p=gallery">Gallery</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="?p=login">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="?p=register">Register</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -54,27 +62,7 @@
     </div>
 </nav>
 <main class="container-fluid">
-    <div class="jumbotron">
-        <h1 class="display-4">Hello, world!</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-    </div>
-    <div class="row">
-        <div class="col text-center">
-            <h2>Test</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aperiam consectetur illum ipsum maiores soluta unde, ut velit! Commodi doloribus esse excepturi inventore labore odio perferendis quibusdam repellat saepe voluptatum!</p>
-        </div>
-        <div class="col text-center">
-            <h2>Test</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci, dolore ea eaque maxime nulla officiis porro qui sapiente tenetur. Adipisci consequatur consequuntur dicta incidunt iste itaque officiis saepe, ut!</p>
-        </div>
-        <div class="col text-center">
-            <h2>Test</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias architecto aut dolorum fuga, incidunt iste libero maiores modi neque nisi odit possimus provident quia, quisquam ratione repellat, repellendus repudiandae. Voluptates.</p>
-        </div>
-    </div>
+    <?php include (PAGES . \sae\app\helpers\Route::validPage() . ".php"); ?>
 </main>
 <footer class="footer">
     <div class="container">
