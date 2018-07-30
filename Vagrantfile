@@ -4,9 +4,5 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "./www", "/var/www/html"
   config.vm.provision "shell", inline: <<-SHELL
         apt-get update
-        apt-get -y install phpmyadmin
-        ln -s /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf
-        a2enconf phpmyadmin.conf
-        service apache2 reload
   SHELL
 end

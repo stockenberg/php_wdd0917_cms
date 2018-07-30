@@ -6,19 +6,19 @@
  * Time: 10:01
  */
 
-namespace classes\config;
+namespace sae\app\configs;
 
 
-use classes\controller\ContactController;
+use sae\app\controllers\LoginController;
 
 class PageAction
 {
 
     const PAGE_METHODS = [
-        'contact' => [
-            'class' => ContactController::class,
+        'login' => [
+            'class' => LoginController::class,
             'actions' => [
-                'submit' => 'submit',
+                'test' => 'test',
             ],
         ]
     ];
