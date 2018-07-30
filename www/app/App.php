@@ -21,7 +21,6 @@ class App
         Session::init('PHP_WDD_917_CMS');
 
         // Bug: Notice - undefined key in PAGE_METHODS action entry
-        DB::set('', []);
         Route::get(
             $_GET['p'] ?? '',
             PageAction::PAGE_METHODS[$_GET['p'] ?? '']['class'],

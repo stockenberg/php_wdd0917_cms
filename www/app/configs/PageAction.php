@@ -9,6 +9,7 @@
 namespace sae\app\configs;
 
 
+use sae\app\controllers\HomeController;
 use sae\app\controllers\LoginController;
 
 class PageAction
@@ -18,7 +19,13 @@ class PageAction
         'login' => [
             'class' => LoginController::class,
             'actions' => [
-                'test' => 'test',
+                'login' => 'login',
+            ],
+        ],
+        'home' => [
+            'class' => HomeController::class,
+            'actions' => [
+                'logout' => 'logout',
             ],
         ]
     ];

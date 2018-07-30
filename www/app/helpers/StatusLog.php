@@ -41,7 +41,7 @@ class StatusLog
      */
     public static function read($key) : string
     {
-        return self::$messageArr[$key] ?? null;
+        return self::$messageArr[$key] ?? '';
     }
 
     /**
