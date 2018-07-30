@@ -19,6 +19,11 @@ class Session implements SessionInterface
         session_start();
     }
 
+    public static function get($key)
+    {
+        return $_SESSION[$key] ?? false;
+    }
+
     public static function add($key, $value): void
     {
         $_SESSION[$key] = $value;
@@ -39,5 +44,10 @@ class Session implements SessionInterface
         return $_SESSION;
     }
 
+
+    public static function isLoggedIn() : bool
+    {
+        return ($_SESSION['user_id'] ?? false) ? true : false;
+    }
 
 }

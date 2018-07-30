@@ -48,6 +48,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="?p=register">Register</a>
             </li>
+            <?php if(\sae\app\helpers\Session::isLoggedIn()) : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="?p=home&action=logout">Logout</a>
+                </li>
+            <?php endif; ?>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Dropdown link
