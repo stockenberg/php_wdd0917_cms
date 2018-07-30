@@ -1,0 +1,1 @@
+{"virtualbox":{"/var/www/html":{"guestpath":"/var/www/html","hostpath":"/home/mstockenberg/WebProjects/WDD_917_CMS/www","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/mstockenberg/WebProjects/WDD_917_CMS","disabled":false,"__vagrantfile":true}}}

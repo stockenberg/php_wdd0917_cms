@@ -1,0 +1,17 @@
+{
+    "name": "mstockenberg/www",
+    "description": "WDD_917_CMS",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Marten Stockenberg",
+            "email": "m.stockenberg@sae.edu"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "sae\\app\\": "./app"
+        }
+    }
+}
