@@ -7,10 +7,10 @@
  */
 
 
-define('DB_HOST', '');
-define('DB_NAME', '');
-define('DB_USER', '');
-define('DB_PASS', '');
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'wdd917_cms');
+define('DB_USER', 'root');
+define('DB_PASS', 'admin');
 
 define('ADMIN', 1);
 define('AUTHOR', 2);
