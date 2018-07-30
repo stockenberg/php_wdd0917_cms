@@ -30,4 +30,9 @@
         - Async CRUD
        
 # 30.07.
-    - we did:
+    - Initial CMS Setup
+    - Database connection
+    - Login
+    - Logout
+    - Session Handling
+    - Status Handling
