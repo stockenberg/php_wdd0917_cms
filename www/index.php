@@ -1,4 +1,13 @@
 <?php
+    /**
+     * Config.php
+     * Controller
+     * Model
+     * DB connect
+     * Session
+     * Status
+     */
+
     require_once ("vendor/autoload.php");
     $app = new \sae\app\App();
 ?>
