@@ -1,15 +1,14 @@
 <?php
     /**
-     * Config.php
      * Controller
      * Model
      * DB connect
-     * Session
-     * Status
      */
-
+    require_once ('app/configs/main.php');
     require_once ("vendor/autoload.php");
     $app = new \sae\app\App();
+
+
 ?>
 
 <!doctype html>
@@ -24,6 +23,7 @@
     <title>Document</title>
 </head>
 <body>
+<?= include (PAGES . "contact.php"); ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
