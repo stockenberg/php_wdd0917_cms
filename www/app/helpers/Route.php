@@ -9,17 +9,19 @@
 namespace sae\app\helpers;
 
 
+use sae\app\App;
 use sae\app\configs\PageAction;
 
 class Route
 {
 
-    public static $whitelist = ['home', 'about', 'contact', 'gallery', 'login', 'register', "404"];
+    public static $whitelist = ['home', 'about', 'contact', 'gallery', 'login', 'register', "404", "edit-users"];
 
     /**
      * Gets a Page parameter, Classname and Action
      * If Classname and Action are set, then the Class will be instanciated.
      * If the action is set, the method of the given class will be executed.
+     * If the return is not null, the result of the action will be placed in App::$data
      * @param $get
      * @param null $classname
      * @param null $action
@@ -31,9 +33,14 @@ class Route
                 if ($action !== null && $classname !== null) {
                     if(in_array($_SESSION['role'] ?? '' , $action['allowed'])
                         || empty($action['allowed'])){
+
                         $classObj = new $classname();
                         $func = $action['method'];
-                        $classObj->$func();
+                        $return = $classObj->$func();
+
+                        if(!is_null($return)){
+                            App::$data = $return;
+                        }
                     }else{
                         StatusLog::write('auth_failed', AUTH_NOT_ALLOWED);
                     }

@@ -11,6 +11,7 @@ namespace sae\app\configs;
 
 use sae\app\controllers\HomeController;
 use sae\app\controllers\LoginController;
+use sae\app\controllers\UserController;
 
 class PageAction
 {
@@ -31,6 +32,19 @@ class PageAction
                 'logout' => [
                     'allowed' => [],
                     'method' => 'logout'
+                ]
+            ],
+        ],
+        'edit-users' => [
+            'class' => UserController::class,
+            'actions' => [
+                'default' => [
+                    'allowed' => [],
+                    'method' => 'init'
+                ],
+                'delete' => [
+                    'allowed' => [ADMIN],
+                    'method' => 'delete'
                 ]
             ],
         ]

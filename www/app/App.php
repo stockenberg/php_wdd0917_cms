@@ -16,6 +16,8 @@ use sae\app\models\Login;
 
 class App
 {
+    public static $data = [];
+
     public function __construct()
     {
         Session::init('PHP_WDD_917_CMS');
@@ -28,7 +30,7 @@ class App
         Route::get(
             $_GET['p'] ?? '',
             PageAction::PAGE_METHODS[$_GET['p'] ?? '']['class'],
-            PageAction::PAGE_METHODS[$_GET['p'] ?? '']['actions'][$_GET['action'] ?? '']
+            PageAction::PAGE_METHODS[$_GET['p'] ?? '']['actions'][$_GET['action'] ?? 'default']
         );
 
     }
