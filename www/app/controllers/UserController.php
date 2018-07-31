@@ -9,12 +9,16 @@
 namespace sae\app\controllers;
 
 
+use sae\app\App;
+use sae\app\helpers\Session;
 use sae\app\models\User;
 
 class UserController
 {
     public function init()
     {
+        !Session::isAllowed([ADMIN]) ? App::redirect('home') : null;
+
         $user = new User();
         $userArr = $user->getAllUsersExceptFirstId();
         return $userArr;
