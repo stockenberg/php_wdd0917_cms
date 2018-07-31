@@ -50,4 +50,11 @@ class Session implements SessionInterface
         return ($_SESSION['user_id'] ?? false) ? true : false;
     }
 
+    public static function isAllowed(array $arr)
+    {
+        if(in_array(self::get('role'), $arr)){
+            return true;
+        }
+        return false;
+    }
 }
