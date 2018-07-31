@@ -11,5 +11,5 @@ namespace sae\app\controllers;
 
 class LoginController
 {
-
+        // public $data = [];
 }

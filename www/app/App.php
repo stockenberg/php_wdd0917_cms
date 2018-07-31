@@ -16,6 +16,8 @@ use sae\app\helpers\Session;
 
 class App
 {
+    public static $data;
+
     public function __construct()
     {
         Session::init('PHP_WDD_917_CMS');
