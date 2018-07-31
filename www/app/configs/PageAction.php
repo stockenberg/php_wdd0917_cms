@@ -45,6 +45,18 @@ class PageAction
                 'delete' => [
                     'allowed' => [ADMIN],
                     'method' => 'delete'
+                ],
+                'create' => [
+                    'allowed' => [ADMIN],
+                    'method' => 'create'
+                ],
+                'edit' => [
+                    'allowed' => [ADMIN],
+                    'method' => 'edit'
+                ],
+                'update' => [
+                    'allowed' => [ADMIN],
+                    'method' => 'update'
                 ]
             ],
         ]

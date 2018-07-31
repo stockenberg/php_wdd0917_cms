@@ -26,22 +26,24 @@ class Route
      * @param null $classname
      * @param null $action
      */
-    public static function get($get, $classname = null,  $action = null)
+    public static function get($get, $classname = null, $action = null)
     {
         if (isset($get)) {
             if (in_array($get, self::$whitelist)) {
                 if ($action !== null && $classname !== null) {
-                    if(in_array($_SESSION['role'] ?? '' , $action['allowed'])
-                        || empty($action['allowed'])){
+                    if (in_array($_SESSION['role'] ?? '', $action['allowed'])
+                        || empty($action['allowed'])) {
 
                         $classObj = new $classname();
                         $func = $action['method'];
                         $return = $classObj->$func();
 
-                        if(!is_null($return)){
-                            App::$data = $return;
+                        if (!is_null($return)) {
+                            App::$data['data'] = $return;
+                        } elseif (!empty($classObj->data)) {
+                            App::$data = $classObj->data;
                         }
-                    }else{
+                    } else {
                         StatusLog::write('auth_failed', AUTH_NOT_ALLOWED);
                     }
                 }
@@ -69,7 +71,7 @@ class Route
 
     public static function post()
     {
-        
+
     }
 
 }
