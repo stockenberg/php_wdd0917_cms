@@ -36,3 +36,11 @@
 - Logout
 - Session Handling
 - Status Handling
+
+# Setup
+```
+> git clone https://github.com/stockenberg/php_wdd0917_cms.git
+> cd php_wdd0917_cms
+> composer update
+> npm install
+```
