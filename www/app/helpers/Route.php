@@ -9,6 +9,8 @@
 namespace sae\app\helpers;
 
 
+use sae\app\configs\PageAction;
+
 class Route
 {
 
@@ -27,8 +29,14 @@ class Route
         if (isset($get)) {
             if (in_array($get, self::$whitelist)) {
                 if ($action !== null && $classname !== null) {
-                    $classObj = new $classname();
-                    $classObj->$action();
+                    if(in_array($_SESSION['role'] ?? '' , $action['allowed'])
+                        || empty($action['allowed'])){
+                        $classObj = new $classname();
+                        $func = $action['method'];
+                        $classObj->$func();
+                    }else{
+                        StatusLog::write('auth_failed', AUTH_NOT_ALLOWED);
+                    }
                 }
             }
         }

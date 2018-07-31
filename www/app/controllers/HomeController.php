@@ -9,6 +9,7 @@
 namespace sae\app\controllers;
 
 
+use sae\app\App;
 use sae\app\helpers\Session;
 
 class HomeController
@@ -16,7 +17,6 @@ class HomeController
     public function logout()
     {
         Session::clear();
-        header('Location: ?p=home');
-        exit();
+        App::redirect('home');
     }
 }

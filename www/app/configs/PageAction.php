@@ -19,13 +19,19 @@ class PageAction
         'login' => [
             'class' => LoginController::class,
             'actions' => [
-                'login' => 'login',
+                'login' => [
+                    'allowed' => [],
+                    'method' => 'login'
+                ],
             ],
         ],
         'home' => [
             'class' => HomeController::class,
             'actions' => [
-                'logout' => 'logout',
+                'logout' => [
+                    'allowed' => [],
+                    'method' => 'logout'
+                ]
             ],
         ]
     ];

@@ -9,6 +9,7 @@
 namespace sae\app\controllers;
 
 
+use sae\app\App;
 use sae\app\helpers\Session;
 use sae\app\helpers\StatusLog;
 use sae\app\models\Login;
@@ -21,7 +22,7 @@ class LoginController
          * If empty fields
          */
         if (empty($_POST['username']) || empty($_POST['password'])) {
-            StatusLog::write('login', 'Bitte gebe deine Logindaten an!');
+            StatusLog::write('login', LOGIN_EMPTY_FIELDS);
         }
 
         /** login routine */
@@ -30,19 +31,23 @@ class LoginController
             $password = $_POST['password'];
 
             $model = new Login();
-            $userData = $model->login($username);
+            $user = $model->getUserByUsernameWithRole($username);
 
-            if(password_verify($password, $userData[0]['password'])){
-                $id = $userData[0]['id'];
-                $username = $userData[0]['username'];
+            if(password_verify($password, $user[0]['password'])){
+
+                $id = $user[0]['id'];
+                $username = $user[0]['username'];
+                $role = $user[0]['role'];
+                $role_name = $user[0]['name'];
 
                 Session::add('user_id', $id);
                 Session::add('username', $username);
+                Session::add('role', $role);
+                Session::add('role_name', $role_name);
 
-                header('Location: ?p=home');
-                exit();
+                App::redirect('home');
             }else{
-                StatusLog::write('login', 'Nutzername oder Passwort falsch.');
+                StatusLog::write('login', LOGIN_FAILED);
             }
         }
     }
