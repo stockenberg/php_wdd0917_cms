@@ -12,6 +12,7 @@ namespace sae\app\controllers;
 use sae\app\App;
 use sae\app\helpers\Session;
 use sae\app\helpers\StatusLog;
+use sae\app\models\Role;
 use sae\app\models\User;
 
 class UserController
@@ -20,6 +21,10 @@ class UserController
 
     public function __construct()
     {
+        /**
+         * If there is another action then default - call the init function cause we want to get the users!
+         * case updateUsers();
+         */
         $this->init();
     }
     
@@ -30,25 +35,34 @@ class UserController
         $user = new User();
         $userArr = $user->getAllUsersExceptFirstId();
         $this->data['data'] = $userArr;
+
+        $role = new Role();
+        $this->data['roles'] = $role->getAllRoles();
+
     }
 
     public function update()
     {
+
+
         if (isset($_POST['userform'])) {
             if (empty($_POST['userform']['username'])) {
-                StatusLog::write('username', EMPTY_USERNAME);
+                Session::addFlash('edit_username', EMPTY_USERNAME);
+                // BUG - Uncool! bitte unbedingt fixen!
+                StatusLog::write('x', 'y');
             }
             if (empty($_POST['userform']['role_id'])) {
-                StatusLog::write('role', EMPTY_ROLE);
+                Session::addFlash('edit_role', EMPTY_ROLE);
+                StatusLog::write('x', 'y');
             }
 
             if (empty(StatusLog::allEntries())) {
                 $user = new User();
                 if($user->updateUser($_POST['userform'])){
-                    StatusLog::write('user', USER_UPDATED);
+                    Session::addFlash('user_updated', USER_UPDATED);
                     App::redirect('edit-users');
                 }else{
-                    StatusLog::write('user', ERROR);
+                    Session::addFlash('error', ERROR);
                 }
             }
 
@@ -57,6 +71,7 @@ class UserController
 
     public function edit()
     {
+
         $user = new User();
         $this->data['edit'] = $user->getUserById($_GET['id']);
     }
@@ -66,25 +81,25 @@ class UserController
 
         if (isset($_POST['userform'])) {
             if (empty($_POST['userform']['username'])) {
-                StatusLog::write('username', EMPTY_USERNAME);
+                Session::add('username', EMPTY_USERNAME);
             }
             if (empty($_POST['userform']['password'])) {
-                StatusLog::write('password', EMPTY_PASSWORD);
+                Session::add('password', EMPTY_PASSWORD);
             }
             if (empty($_POST['userform']['role_id'])) {
-                StatusLog::write('role', EMPTY_ROLE);
+                Session::add('role', EMPTY_ROLE);
             }
             if ($_POST['userform']['password'] !== $_POST['userform']['password_retyped']) {
-                StatusLog::write('nomatch', RETYPE_NOMATCH);
+                Session::add('nomatch', RETYPE_NOMATCH);
             }
 
             if (empty(StatusLog::allEntries())) {
                 $user = new User();
                 if($user->saveUser($_POST['userform'])){
-                    StatusLog::write('user', USER_SAVED);
+                    Session::add('user', USER_SAVED);
                     App::redirect('edit-users');
                 }else{
-                    StatusLog::write('user', ERROR);
+                    Session::add('user', ERROR);
                 }
             }
 
@@ -95,6 +110,9 @@ class UserController
     public function delete()
     {
         $user = new User();
-        $user->deleteUserById($_GET['id']);
+        if( $user->deleteUserById($_GET['id'])){
+            Session::add('deleted', DELETE_SUCCESSFULL);
+            App::redirect('edit-users');
+        }
     }
 }

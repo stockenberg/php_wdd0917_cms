@@ -39,7 +39,7 @@ class PageAction
             'class' => UserController::class,
             'actions' => [
                 'default' => [
-                    'allowed' => [],
+                    'allowed' => [ADMIN],
                     'method' => 'init'
                 ],
                 'delete' => [

@@ -40,8 +40,7 @@ class User
     public function deleteUserById($id)
     {
         $SQL = 'DELETE FROM users WHERE id = :id';
-        DB::set($SQL, [':id' => $id]);
-        App::redirect('edit-users');
+        return DB::set($SQL, [':id' => $id]);
     }
 
     public function saveUser($user)

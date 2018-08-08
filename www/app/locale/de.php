@@ -20,3 +20,5 @@ define('EMPTY_ROLE', 'Der Nutzer hat keine Rolle');
 define('USER_SAVED', 'Der Nutzer wurde gespeichert');
 define('USER_UPDATED', 'Der Nutzer wurde editiert');
 define('ERROR', 'Hoppla, irgendwas ist schief gelaufen...');
+
+define('DELETE_SUCCESSFULL', 'Der Nutzer wurde erfolgreich gelöscht!');
