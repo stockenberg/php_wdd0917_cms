@@ -12,7 +12,6 @@ namespace sae\app;
 use sae\app\configs\PageAction;
 use sae\app\helpers\Route;
 use sae\app\helpers\Session;
-use sae\app\models\Login;
 
 class App
 {
@@ -23,8 +22,6 @@ class App
         Session::init('PHP_WDD_917_CMS');
         require_once ('app/locale/de.php');
 
-        $model = new Login();
-        $model->getUserByUsernameWithRole('admin');
 
         // Bug: Notice - undefined key in PAGE_METHODS action entry
         Route::get(
