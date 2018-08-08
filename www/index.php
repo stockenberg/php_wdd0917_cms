@@ -20,6 +20,7 @@ $app = new \sae\app\App();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/sticky-footer.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>Document</title>
 </head>
 <body>

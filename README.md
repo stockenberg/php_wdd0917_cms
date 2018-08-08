@@ -37,6 +37,13 @@
 - Session Handling
 - Status Handling
 
+# 31.07.
+- User Management
+    - Read all users
+    - Delete users
+    - Create users
+    - Update users
+
 # Setup
 ```
 > git clone https://github.com/stockenberg/php_wdd0917_cms.git
