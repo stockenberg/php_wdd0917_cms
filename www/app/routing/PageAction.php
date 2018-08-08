@@ -11,6 +11,7 @@ namespace sae\app\routing;
 
 use sae\app\controllers\HomeController;
 use sae\app\controllers\LoginController;
+use sae\app\controllers\NewsController;
 use sae\app\controllers\UserController;
 
 class PageAction
@@ -34,6 +35,15 @@ class PageAction
                     'method' => 'logout'
                 ]
             ],
+        ],
+        'all-news' => [
+            'class' => NewsController::class,
+            'actions' => [
+                'default' => [
+                    'allowed' => [ADMIN, AUTHOR],
+                    'method' => 'init'
+                ]
+            ]
         ],
         'edit-users' => [
             'class' => UserController::class,

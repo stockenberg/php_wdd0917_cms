@@ -44,6 +44,36 @@
     - Create users
     - Update users
 
+# News
+- Datenbank HAKEN
+   - id AI 
+   - headline
+   - teaser
+   - content
+   - user_id
+   - created_at
+   - updated_at
+   
+- methods
+    - getAllNews() 
+    - createNews()
+    - deleteNews()
+    - updateNews()
+    
+- permissions
+    - admin
+    - author
+    
+- pages
+    - whitelist
+    - name
+        - create-news
+        - edit-news
+        - all-news
+    
+- wysiwyg plugin
+    - summernote.org
+    
 # Setup
 ```
 > git clone https://github.com/stockenberg/php_wdd0917_cms.git

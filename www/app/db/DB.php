@@ -63,6 +63,7 @@ class DB implements DBInterface
             $stmt->execute($execArr);
             return $stmt->fetchAll(\PDO::FETCH_ASSOC);
         }catch (\PDOException $e){
+            echo $e->getMessage();
             self::$pdoError = $e->getMessage();
         }
     }
