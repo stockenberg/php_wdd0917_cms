@@ -66,7 +66,7 @@ $app = new \sae\app\App();
     </div>
 </nav>
 <main class="container-fluid">
-    <?php include(PAGES . \sae\app\helpers\Route::validPage() . ".php"); ?>
+    <?php include(PAGES . \sae\app\routing\Route::validPage() . ".php"); ?>
 </main>
 <footer class="footer">
     <div class="container">

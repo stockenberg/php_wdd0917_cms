@@ -16,11 +16,7 @@ use sae\app\models\Login;
 
 class LoginController
 {
-
-    public function test()
-    {
-        
-    }
+    
     
     public function login()
     {

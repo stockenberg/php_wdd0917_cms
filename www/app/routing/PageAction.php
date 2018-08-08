@@ -6,7 +6,7 @@
  * Time: 10:01
  */
 
-namespace sae\app\configs;
+namespace sae\app\routing;
 
 
 use sae\app\controllers\HomeController;

@@ -9,8 +9,8 @@
 namespace sae\app;
 
 
-use sae\app\configs\PageAction;
-use sae\app\helpers\Route;
+use sae\app\routing\PageAction;
+use sae\app\routing\Route;
 use sae\app\helpers\Session;
 
 class App

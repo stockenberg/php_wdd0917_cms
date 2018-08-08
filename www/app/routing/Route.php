@@ -6,11 +6,12 @@
  * Time: 11:52
  */
 
-namespace sae\app\helpers;
+namespace sae\app\routing;
 
 
 use sae\app\App;
-use sae\app\configs\PageAction;
+use sae\app\helpers\StatusLog;
+use sae\app\routing\PageAction;
 
 class Route
 {
