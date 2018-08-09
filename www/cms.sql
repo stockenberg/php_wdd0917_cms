@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.19, for Linux (x86_64)
 --
--- Host: localhost    Database: example_cms
+-- Host: localhost    Database: wdd917_cms
 -- ------------------------------------------------------
 -- Server version	5.7.19-0ubuntu0.16.04.1
 
@@ -16,57 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `assets`
+-- Table structure for table `news`
 --
 
-DROP TABLE IF EXISTS `assets`;
+DROP TABLE IF EXISTS `news`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `assets` (
+CREATE TABLE `news` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `filename` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `mime_type` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role_id` int(11) NOT NULL,
+  `headline` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `teaser` text COLLATE utf8mb4_unicode_ci,
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `assets`
+-- Dumping data for table `news`
 --
 
-LOCK TABLES `assets` WRITE;
-/*!40000 ALTER TABLE `assets` DISABLE KEYS */;
-/*!40000 ALTER TABLE `assets` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `pages`
---
-
-DROP TABLE IF EXISTS `pages`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `pages` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `template_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `pages`
---
-
-LOCK TABLES `pages` WRITE;
-/*!40000 ALTER TABLE `pages` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pages` ENABLE KEYS */;
+LOCK TABLES `news` WRITE;
+/*!40000 ALTER TABLE `news` DISABLE KEYS */;
+INSERT INTO `news` VALUES (1,'Unsere news','ist der hammer','conotent content content',1,'2018-08-08 09:57:44',NULL),(2,'asdasdas','asd','asdasdasdasdasdas',2,'2018-08-08 10:18:22',NULL),(3,'asdas','yxcyxcyxc','asdasdyxcyxc',1,'2018-08-08 10:20:52',NULL);
+/*!40000 ALTER TABLE `news` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -77,11 +52,12 @@ DROP TABLE IF EXISTS `roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `roles` (
-  `role_id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_name` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role_created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `role_updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`role_id`)
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role` int(11) NOT NULL,
+  `name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -91,33 +67,8 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'admin','2018-06-28 09:51:15',NULL),(2,'author','2018-06-28 09:51:15',NULL),(3,'user','2018-06-28 09:51:21',NULL);
+INSERT INTO `roles` VALUES (1,1,'Admin','2018-07-31 08:29:38',NULL),(2,2,'Author','2018-07-31 08:29:38',NULL),(3,3,'User','2018-07-31 08:29:48',NULL);
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `templates`
---
-
-DROP TABLE IF EXISTS `templates`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `templates` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `templates`
---
-
-LOCK TABLES `templates` WRITE;
-/*!40000 ALTER TABLE `templates` DISABLE KEYS */;
-/*!40000 ALTER TABLE `templates` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -129,8 +80,8 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(48) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
@@ -144,7 +95,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (5,'asd','asd',1,'2018-06-28 09:41:08',NULL),(6,'yxc','asd',1,'2018-06-28 09:41:19',NULL),(7,'Hallo','1234',3,'2018-06-28 09:41:19','2018-06-28 09:45:24'),(8,'Hallo','Hallo',1,'2018-07-04 09:31:34',NULL),(9,'Hallo','Hallo',1,'2018-07-04 09:31:53',NULL),(10,'MARTEN','$2y$12$.4RYo3dELRd6gaEj0IXC6OaxisMNY29g88hAkxcNobfKDhzAbnYEq',1,'2018-07-04 09:40:14',NULL),(11,'MARTEN','$2y$16$ZqDFdQsdUiUepLNAymywLOc644ZpKlyMfgZtpawotkw9CehkLcYOy',1,'2018-07-04 09:40:32',NULL),(12,'MARTEN','$2y$16$IYdY/twfH6dMVr2mZ5k74.9yIBkxyO51xc.khXPZRvSo37bfQ3oLG',1,'2018-07-04 09:40:42',NULL);
+INSERT INTO `users` VALUES (1,'admin','$2y$12$zM1i76dKPn8cTL5fmVvjh.3DI9AqxwSCEYcm9/e2E6zJtlFALc7Uy',1,'2018-07-30 10:06:24','2018-07-31 08:49:33'),(10,'Gaaaargh','$2y$12$eJnO7xozlG8qyrE4gXqrku2J3Lge2IoGEmjv8E.a1fzK7nwaUC3Gm',1,'2018-07-31 12:27:27','2018-08-08 09:13:44'),(11,'Marten','$2y$12$PYoUGxnNOfT0FcQUvD7WQuvdbekKEeZN87FRStpZyFX9rwz2xmXue',2,'2018-08-08 08:35:14',NULL),(12,'adminnew','$2y$12$LFEwNAHVOh6JEUCOLabKIupKtXP6iXu68y15dZVk.UA4LlAlvOsCW',1,'2018-08-08 08:56:13',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -157,4 +108,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-09  8:25:51
+-- Dump completed on 2018-08-09  8:43:54
