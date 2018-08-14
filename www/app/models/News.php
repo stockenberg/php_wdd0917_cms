@@ -10,6 +10,7 @@ namespace sae\app\models;
 
 
 use sae\app\db\DB;
+use sae\app\helpers\Session;
 
 class News
 {
@@ -18,6 +19,12 @@ class News
     {
         $SQL = "SELECT * FROM news";
         return DB::fetch($SQL);
+    }
+
+    public function getNewsById($id)
+    {
+        $SQL = 'SELECT * FROM news WHERE id = :id';
+        return DB::fetch($SQL, [':id' => $id]);
     }
 
     public static function all(Int $limit = null) : array
@@ -35,5 +42,19 @@ class News
         return DB::fetch($SQL, $execArr);
 
 
+    }
+
+    public function createNews(array $news)
+    {
+
+        $SQL = 'INSERT INTO news (headline, teaser, content, user_id) VALUES (:headline, :teaser, :content, :user_id)';
+        $execArr = [
+            ':headline' => $news['headline'],
+            ':teaser' => $news['teaser'],
+            ':content' => $news['content'],
+            ':user_id' => Session::get('user_id'),
+        ];
+
+        return DB::set($SQL, $execArr);
     }
 }

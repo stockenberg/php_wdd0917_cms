@@ -19,7 +19,7 @@ class Route
     public static $whitelist = [
         'home', 'about', 'contact', 'gallery', 'login',
         'register', "404", "edit-users", 'create-news', 'edit-news',
-        'all-news'
+        'all-news', 'news'
     ];
 
     /**

@@ -47,22 +47,22 @@ class UserController
 
         if (isset($_POST['userform'])) {
             if (empty($_POST['userform']['username'])) {
-                Session::addFlash('edit_username', EMPTY_USERNAME);
+                Session::addFlashFlash('edit_username', EMPTY_USERNAME);
                 // BUG - Uncool! bitte unbedingt fixen!
                 StatusLog::write('x', 'y');
             }
             if (empty($_POST['userform']['role_id'])) {
-                Session::addFlash('edit_role', EMPTY_ROLE);
+                Session::addFlashFlash('edit_role', EMPTY_ROLE);
                 StatusLog::write('x', 'y');
             }
 
             if (empty(StatusLog::allEntries())) {
                 $user = new User();
                 if($user->updateUser($_POST['userform'])){
-                    Session::addFlash('user_updated', USER_UPDATED);
+                    Session::addFlashFlash('user_updated', USER_UPDATED);
                     App::redirect('edit-users');
                 }else{
-                    Session::addFlash('error', ERROR);
+                    Session::addFlashFlash('error', ERROR);
                 }
             }
 
@@ -78,40 +78,37 @@ class UserController
 
     public function create()
     {
-
         if (isset($_POST['userform'])) {
             if (empty($_POST['userform']['username'])) {
-                Session::add('username', EMPTY_USERNAME);
+                Session::addFlash('username', EMPTY_USERNAME);
             }
             if (empty($_POST['userform']['password'])) {
-                Session::add('password', EMPTY_PASSWORD);
+                Session::addFlash('password', EMPTY_PASSWORD);
             }
             if (empty($_POST['userform']['role_id'])) {
-                Session::add('role', EMPTY_ROLE);
+                Session::addFlash('role', EMPTY_ROLE);
             }
             if ($_POST['userform']['password'] !== $_POST['userform']['password_retyped']) {
-                Session::add('nomatch', RETYPE_NOMATCH);
+                Session::addFlash('nomatch', RETYPE_NOMATCH);
             }
 
             if (empty(StatusLog::allEntries())) {
                 $user = new User();
                 if($user->saveUser($_POST['userform'])){
-                    Session::add('user', USER_SAVED);
+                    Session::addFlash('user', USER_SAVED);
                     App::redirect('edit-users');
                 }else{
-                    Session::add('user', ERROR);
+                    Session::addFlash('user', ERROR);
                 }
             }
-
         }
-
     }
 
     public function delete()
     {
         $user = new User();
         if( $user->deleteUserById($_GET['id'])){
-            Session::add('deleted', DELETE_SUCCESSFULL);
+            Session::addFlash('deleted', DELETE_SUCCESSFULL);
             App::redirect('edit-users');
         }
     }

@@ -61,7 +61,7 @@ class Session implements SessionInterface
     public static function flash($key)
     {
         if(isset($_SESSION['flashes']) && isset($_SESSION['flashes'][$key])){
-            $msg = $_SESSION[['flashes']][$key];
+            $msg = $_SESSION['flashes'][$key];
             unset($_SESSION['flashes'][$key]);
             return $msg;
         }

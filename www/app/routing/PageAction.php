@@ -13,6 +13,7 @@ use sae\app\controllers\HomeController;
 use sae\app\controllers\LoginController;
 use sae\app\controllers\NewsController;
 use sae\app\controllers\UserController;
+use sae\app\models\News;
 
 class PageAction
 {
@@ -36,12 +37,34 @@ class PageAction
                 ]
             ],
         ],
+        'news' => [
+            'class' => NewsController::class,
+            'actions' => [
+                'view' => [
+                    'allowed' => [ADMIN, AUTHOR],
+                    'method' => 'view'
+                ],
+                'update' => [
+                    'allowed' => [],
+                    'method' => 'update'
+                ]
+            ]
+        ],
         'all-news' => [
             'class' => NewsController::class,
             'actions' => [
                 'default' => [
                     'allowed' => [ADMIN, AUTHOR],
                     'method' => 'init'
+                ]
+            ]
+        ],
+        'create-news' => [
+            'class' => NewsController::class,
+            'actions' => [
+                'create' => [
+                    'allowed' => [ADMIN, AUTHOR],
+                    'method' => 'validate'
                 ]
             ]
         ],

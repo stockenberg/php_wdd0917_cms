@@ -74,5 +74,7 @@ $app = new \sae\app\App();
     </div>
 </footer>
 <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+<script src="assets/js/news-edit.js"></script>
 </body>
 </html>
