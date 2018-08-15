@@ -9,6 +9,7 @@
 namespace sae\app\controllers;
 
 
+use PHPMailer\PHPMailer\PHPMailer;
 use sae\app\App;
 use sae\app\helpers\Session;
 use sae\app\helpers\StatusLog;
@@ -27,7 +28,7 @@ class UserController
          */
         $this->init();
     }
-    
+
     public function init()
     {
         !Session::isAllowed([ADMIN]) ? App::redirect('home') : null;
@@ -58,10 +59,10 @@ class UserController
 
             if (empty(StatusLog::allEntries())) {
                 $user = new User();
-                if($user->updateUser($_POST['userform'])){
+                if ($user->updateUser($_POST['userform'])) {
                     Session::addFlashFlash('user_updated', USER_UPDATED);
                     App::redirect('edit-users');
-                }else{
+                } else {
                     Session::addFlashFlash('error', ERROR);
                 }
             }
@@ -94,20 +95,53 @@ class UserController
 
             if (empty(StatusLog::allEntries())) {
                 $user = new User();
-                if($user->saveUser($_POST['userform'])){
+                if ($user->saveUser($_POST['userform'])) {
                     Session::addFlash('user', USER_SAVED);
+                    // send mail!
+                    $this->sendMail($_POST['userform']);
                     App::redirect('edit-users');
-                }else{
+                } else {
                     Session::addFlash('user', ERROR);
                 }
             }
         }
     }
 
+    public function sendMail($user)
+    {
+
+        try {
+            $mail = new PHPMailer(true);
+            $mail->isSMTP();
+            $mail->Host = "smtp.gmail.com";
+            $mail->SMTPAuth = true;
+            $mail->Username = "m.stockenberg@sae.edu";
+            $mail->Password = GMAIL_PASS;
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
+
+            $mail->setFrom('m.stockenberg@sae.edu', 'Marten Stockenberg');
+            $mail->addAddress('b4456201@nwytg.net');
+
+            $mail->isHTML(true);
+            $mail->Subject = "Hier ist eine Mail vom Server";
+            $mail->Body = "
+            <h2>Ein neuer Nutzer wurde angelegt</h2>
+            <li>
+            <li>Username:  " . $user['username'] . ",</li>
+            <li>Rolle:  " . $user['role_id'] . "</li>
+            </ul>
+            ";
+            $mail->send();
+        } catch (\Exception $e) {
+            echo 'Message could not be sent. Mailer Error: ', $e->getMessage();
+        }
+    }
+
     public function delete()
     {
         $user = new User();
-        if( $user->deleteUserById($_GET['id'])){
+        if ($user->deleteUserById($_GET['id'])) {
             Session::addFlash('deleted', DELETE_SUCCESSFULL);
             App::redirect('edit-users');
         }

@@ -11,6 +11,10 @@ class ComposerStaticInitecf4b4c3a028cda4e1302f57c4257f90
         array (
             'sae\\app\\' => 8,
         ),
+        'P' => 
+        array (
+            'PHPMailer\\PHPMailer\\' => 20,
+        ),
         'D' => 
         array (
             'Delight\\FileUpload\\' => 19,
@@ -21,6 +25,10 @@ class ComposerStaticInitecf4b4c3a028cda4e1302f57c4257f90
         'sae\\app\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'Delight\\FileUpload\\' => 
         array (

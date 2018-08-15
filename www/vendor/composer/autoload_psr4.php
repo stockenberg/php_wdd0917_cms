@@ -7,5 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'sae\\app\\' => array($baseDir . '/app'),
+    'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
     'Delight\\FileUpload\\' => array($vendorDir . '/delight-im/file-upload/src'),
 );
