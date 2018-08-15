@@ -51,6 +51,9 @@ $app = new \sae\app\App();
                     <a class="nav-link" href="?p=edit-users">Manage Users</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="?p=all-news">All News</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="?p=home&action=logout">Logout</a>
                 </li>
             <?php else: ?>
@@ -68,11 +71,7 @@ $app = new \sae\app\App();
 <main class="container-fluid">
     <?php include(PAGES . \sae\app\routing\Route::validPage() . ".php"); ?>
 </main>
-<footer class="footer">
-    <div class="container">
-        <span class="text-muted">Place sticky footer content here.</span>
-    </div>
-</footer>
+
 <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/jquery-3.3.1.min.js"></script>
 <script src="assets/js/news-edit.js"></script>

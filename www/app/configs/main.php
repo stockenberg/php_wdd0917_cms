@@ -17,5 +17,5 @@ define('AUTHOR', 2);
 define('USER', 3);
 
 define('IMG_PATH', '');
-define('UPLOAD_PATH', '');
+define('UPLOAD_PATH', 'uploads/');
 define('PAGES', 'pages/');

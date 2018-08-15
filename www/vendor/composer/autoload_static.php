@@ -11,12 +11,20 @@ class ComposerStaticInitecf4b4c3a028cda4e1302f57c4257f90
         array (
             'sae\\app\\' => 8,
         ),
+        'D' => 
+        array (
+            'Delight\\FileUpload\\' => 19,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'sae\\app\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
+        ),
+        'Delight\\FileUpload\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/delight-im/file-upload/src',
         ),
     );
 

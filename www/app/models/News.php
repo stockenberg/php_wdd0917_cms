@@ -44,15 +44,16 @@ class News
 
     }
 
-    public function createNews(array $news)
+    public function createNews(array $news, string $filename)
     {
 
-        $SQL = 'INSERT INTO news (headline, teaser, content, user_id) VALUES (:headline, :teaser, :content, :user_id)';
+        $SQL = 'INSERT INTO news (headline, teaser, content, user_id, img) VALUES (:headline, :teaser, :content, :user_id, :img)';
         $execArr = [
             ':headline' => $news['headline'],
             ':teaser' => $news['teaser'],
             ':content' => $news['content'],
             ':user_id' => Session::get('user_id'),
+            ':img' => $filename,
         ];
 
         return DB::set($SQL, $execArr);

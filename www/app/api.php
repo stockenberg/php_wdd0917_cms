@@ -7,6 +7,7 @@ require_once("../vendor/autoload.php");
 
 switch ($_GET['case'] ?? ''){
     case 'update-news':
+   
         $headline = $_POST['headline'];
         $id = $_POST['id'];
 

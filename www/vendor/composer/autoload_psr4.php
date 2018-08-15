@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'sae\\app\\' => array($baseDir . '/app'),
+    'Delight\\FileUpload\\' => array($vendorDir . '/delight-im/file-upload/src'),
 );

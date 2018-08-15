@@ -8,7 +8,9 @@
             "email": "m.stockenberg@sae.edu"
         }
     ],
-    "require": {},
+    "require": {
+        "delight-im/file-upload": "^1.2"
+    },
     "autoload": {
         "psr-4": {
             "sae\\app\\": "./app"
